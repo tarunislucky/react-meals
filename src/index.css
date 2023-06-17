@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
 
 * {
+	padding: 0;
+	margin: 0;
 	box-sizing: border-box;
 }
 
@@ -11,4 +13,135 @@ html {
 body {
 	margin: 0;
 	background-color: #3f3f3f;
+}
+p {
+	font-size: 14px;
+}
+
+.header_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 100px;
+	color: #fff;
+	background-color: #8a2b06;
+	/* fixed position */
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+}
+.header_image {
+	overflow: hidden;
+	height: 400px;
+	width: 100%;
+}
+.header_image img {
+	object-fit: cover;
+	-webkit-transform: rotate(-5deg) translateY(-4rem) translateX(-1rem);
+	transform: rotate(-5deg) translateY(-4rem) translateX(-1rem);
+	width: 110%;
+	height: 100%;
+}
+
+button {
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 15px 50px;
+	background-color: #4d1601;
+	color: #fff;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+}
+svg {
+	width: 20px;
+}
+.cart__product-count {
+	background-color: #b94517;
+	padding: 5px 15px;
+	border-radius: 30px;
+}
+
+/* hero */
+.hero-section {
+	text-align: center;
+	width: 90%;
+	max-width: 700px;
+	margin: -160px auto;
+	margin-bottom: 30px;
+	position: relative;
+	background-color: #383838;
+	color: #fff;
+	border-radius: 14px;
+	padding: 20px;
+	box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+}
+.hero-section h2 {
+	margin-bottom: 20px;
+	font-size: 30px;
+}
+.hero-section p {
+	margin-bottom: 20px;
+}
+
+/* items */
+ul {
+	background-color: #fff;
+	width: 90%;
+	max-width: 1000px;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 2rem auto;
+	animation: showUp 1s ease-out;
+}
+@keyframes showUp {
+	0% {
+		transform: translateY(100px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+li {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #b7b4b4;
+	padding: 15px 0;
+	font-size: 20px;
+	font-weight: 600;
+}
+li p {
+	font-size: 15px;
+	font-weight: normal;
+}
+.item-details {
+	display: flex;
+	flex-direction: column;
+}
+.item-details .price {
+	color: #ad5502;
+}
+.item-details p {
+	font-style: italic;
+}
+.item-details--cart {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: flex-end;
+}
+.item-details--cart input {
+	width: 35px;
+	margin-left: 10px;
+}
+.btn-add {
+	padding: 5px 25px;
+	background-color: #8a2b06;
+	text-align: end;
+	font-size: 17px;
 }
