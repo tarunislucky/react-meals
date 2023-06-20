@@ -1,0 +1,22 @@
+.items-section {
+	overflow: hidden;
+}
+.items-list {
+	background-color: #fff;
+	width: 90%;
+	max-width: 1000px;
+	padding: 20px;
+	border-radius: 10px;
+	margin: 2rem auto;
+	animation: showUp 1s ease-out;
+}
+@keyframes showUp {
+	0% {
+		transform: translateY(100px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}

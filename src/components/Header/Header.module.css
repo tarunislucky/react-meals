@@ -1,0 +1,12 @@
+.header_header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 100px;
+	color: #fff;
+	background-color: #8a2b06;
+	/* fixed position */
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+}
