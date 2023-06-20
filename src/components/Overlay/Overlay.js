@@ -1,4 +1,3 @@
-import { useState, useContext } from "react";
 import styles from "./Overlay.module.css";
 const Overlay = (props) => {
 

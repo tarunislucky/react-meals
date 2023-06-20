@@ -1,4 +1,3 @@
-import { useState, useContext } from "react";
 import CartItem from "./CartItem/CartItem";
 import styles from "./CartModal.module.css";
 const CartModal = (props) => {
@@ -10,12 +9,13 @@ const CartModal = (props) => {
 						if (item.itemAmount > 0) {
 							return <CartItem item={item} key={item.id} quantityController={props.quantityController} />
 						}
+						return;
 					})
 				}
 			</ul>
 			<div className={styles["cart-modal--amount"]}>
 				<span>Total Amount</span>
-				<span> ${props.total.toFixed(2)}</span>
+				<span> ${props.total}</span>
 			</div>
 			<div className={styles["cart-modal--btns"]}>
 				<button onClick={props.onCloseModalbtn}>close</button>

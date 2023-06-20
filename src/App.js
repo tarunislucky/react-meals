@@ -6,7 +6,7 @@ import ItemsSection from "./components/ItemSection/ItemsSection";
 import Overlay from "./components/Overlay/Overlay";
 import CartModal from "./components/CartModal/CartModal";
 function App() {
-  const [itemData, setItemData] = useState([
+  const [itemData] = useState([
     {
       id: 1,
       itemName: "Sushi",
@@ -44,21 +44,24 @@ function App() {
   const quantityController = (id, operation) => {
     // is it good practice to modify state info like this? without setter function ?
     itemData.forEach(item => {
-      if (item.id === id) {
-        if (operation === "increment") {
-          item.itemAmount += 1;
-          // render trigger 1
-          setTotal(prev => (prev + item.itemPrice));
-          setCartCount(prev => prev + 1);
-          return;
-        } else if (operation === "decrement") {
-          item.itemAmount -= 1;
-          // render trigger 1
-          setTotal(prev => (prev - item.itemPrice));
-          setCartCount(prev => prev - 1);
-        }
+      if (item.id !== id) return;
+
+      if (operation === "increment") {
+        item.itemAmount += 1;
+        // render trigger 1
+        setTotal(prev => Number((prev + item.itemPrice).toFixed(2)));
+        setCartCount(prev => prev + 1);
+        return;
       }
-    });
+      if (operation === "decrement") {
+        item.itemAmount -= 1;
+        // render trigger 1
+        setTotal(prev => Number((prev - item.itemPrice).toFixed(2)));
+        setCartCount(prev => prev - 1);
+        return;
+      }
+
+    })
   }
 
 

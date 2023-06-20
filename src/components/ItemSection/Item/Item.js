@@ -1,4 +1,3 @@
-import { useState, useContext } from "react";
 import styles from "./Item.module.css";
 const Item = (props) => {
 	const addAmount = () => {
