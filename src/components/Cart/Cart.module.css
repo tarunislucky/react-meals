@@ -11,9 +11,6 @@
 	background-color: #fff;
 	z-index: 3;
 }
-.cart-modal.hidden {
-	display: none;
-}
 .cart-item-list {
 	margin-bottom: 10px;
 }
@@ -40,4 +37,14 @@
 .cart-modal--btns button:hover {
 	color: #fff;
 	background-color: #8a2b06;
+}
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #000;
+	opacity: 0.7;
+	z-index: 2;
 }

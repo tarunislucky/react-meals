@@ -1,10 +1,8 @@
 import { useState, Fragment } from "react";
 import Header from "./components/Header/Header";
-import HeaderImage from "./components/HeaderImage/HeaderImage";
 import HeroSection from "./components/HeroSection/HeroSection";
 import ItemsSection from "./components/ItemSection/ItemsSection";
-import Overlay from "./components/Overlay/Overlay";
-import CartModal from "./components/CartModal/CartModal";
+import Cart from "./components/Cart/Cart";
 function App() {
   const [itemData] = useState([
     {
@@ -38,8 +36,8 @@ function App() {
   ]);
   const [total, setTotal] = useState(0)
   const [cartCount, setCartCount] = useState(0);
-  const [overlayVisibility, setOverlayVisibility] = useState(false);
-  const [cartModalVisibility, setcartModalVisibility] = useState(false);
+  const [cartVisibility, setCartVisibility] = useState(false);
+
 
   const quantityController = (id, operation) => {
     // is it good practice to modify state info like this? without setter function ?
@@ -67,19 +65,16 @@ function App() {
 
   const toggleModal = async () => {
     // render trigger 2
-    // only 1 render for all state updates below 
-    setOverlayVisibility(!overlayVisibility);
-    setcartModalVisibility(!cartModalVisibility);
+    setCartVisibility(!cartVisibility);
   }
 
   return (
     <>
       <Header count={cartCount} onCartBtnclick={toggleModal} />
-      <HeaderImage />
       <HeroSection />
       <ItemsSection onAddAmount={quantityController} data={itemData} />
-      <Overlay isOpen={overlayVisibility} onClick={toggleModal} />
-      <CartModal isOpen={cartModalVisibility} onCloseModalbtn={toggleModal} data={itemData} total={total} quantityController={quantityController} />
+      {cartVisibility && <Cart onCloseModalbtn={toggleModal} data={itemData} total={total} quantityController={quantityController} />
+      }
     </>
   );
 }

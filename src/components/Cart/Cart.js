@@ -1,8 +1,15 @@
 import CartItem from "./CartItem/CartItem";
-import styles from "./CartModal.module.css";
+import styles from "./Cart.module.css";
+
+const Overlay = (props) => {
+	return (
+		<div onClick={props.onClick} className={styles.overlay}>
+		</div>
+	)
+}
 const CartModal = (props) => {
 	return (
-		<div className={`${styles["cart-modal"]} ${props.isOpen ? '' : styles.hidden}`}>
+		<div className={styles["cart-modal"]}>
 			<ul className={styles["cart-item-list"]}>
 				{
 					props.data.map(item => {
@@ -25,4 +32,14 @@ const CartModal = (props) => {
 	)
 }
 
-export default CartModal;	
+const Cart = (props) => {
+	const overlay = document.getElementById("overlay");
+	return (
+		<>
+			<Overlay onClick={props.onCloseModalbtn} />
+			<CartModal onCloseModalbtn={props.onCloseModalbtn} data={props.data} total={props.total} quantityController={props.quantityController} />
+		</>
+	)
+}
+
+export default Cart;	
