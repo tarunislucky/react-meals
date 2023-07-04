@@ -1,43 +1,58 @@
+import { useSelector } from "react-redux";
+import { useToggleModal } from "../../Hooks/useToggleModal";
+
 import CartItem from "./CartItem/CartItem";
 import styles from "./Cart.module.css";
 
-const Overlay = (props) => {
+
+const Overlay = () => {
+	const toggleModal = useToggleModal();
 	return (
-		<div onClick={props.onClick} className={styles.overlay}>
+		<div onClick={toggleModal} className={styles.overlay}>
 		</div>
 	)
 }
-const CartModal = (props) => {
+const CartModal = () => {
+	const toggleModal = useToggleModal();
+	const cart = useSelector(state => {
+		return state.cart;
+	})
+
+	// calculation of total cart value
+	let totalCartValue = 0;
+	if (cart.items.length > 0) {
+		totalCartValue = cart.items.reduce((prev, next) => parseFloat((prev + next.totalPrice).toFixed(2)), 0);
+	};
+
 	return (
 		<div className={styles["cart-modal"]}>
 			<ul className={styles["cart-item-list"]}>
 				{
-					props.data.map(item => {
-						if (item.itemAmount > 0) {
-							return <CartItem item={item} key={item.id} quantityController={props.quantityController} />
-						}
-						return;
+					cart.items.map(item => {
+						return (
+							<CartItem key={item.id} item={item} />
+						);
 					})
 				}
 			</ul>
 			<div className={styles["cart-modal--amount"]}>
 				<span>Total Amount</span>
-				<span> ${props.total}</span>
+				<span>{totalCartValue.toFixed(2)}</span>
 			</div>
 			<div className={styles["cart-modal--btns"]}>
-				<button onClick={props.onCloseModalbtn}>close</button>
+				<button onClick={toggleModal}>close</button>
 				<button onClick={() => { console.log("Ordering...") }}>Order</button>
 			</div>
 		</div >
 	)
 }
 
-const Cart = (props) => {
-	const overlay = document.getElementById("overlay");
+const Cart = () => {
+
 	return (
 		<>
-			<Overlay onClick={props.onCloseModalbtn} />
-			<CartModal onCloseModalbtn={props.onCloseModalbtn} data={props.data} total={props.total} quantityController={props.quantityController} />
+			<Overlay />
+			<CartModal />
 		</>
 	)
 }

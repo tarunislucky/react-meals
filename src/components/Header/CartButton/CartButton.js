@@ -1,9 +1,14 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
+import { useToggleModal } from "../../../Hooks/useToggleModal";
 import styles from "./CartButton.module.css";
-const CartButton = (props) => {
 
+const CartButton = () => {
+	const toggleModal = useToggleModal();
+	const cartCount = useSelector(state => {
+		return state.cart.totalQuantity;
+	});
 	return (
-		<button className={styles["btn-cart"]} onClick={props.onCartBtnclick}>
+		<button className={styles["btn-cart"]} onClick={toggleModal}>
 			<div>
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -14,7 +19,7 @@ const CartButton = (props) => {
 				</svg>
 			</div>
 			Your Cart
-			<span className={styles["cart__product-count"]}>{props.count}</span>
+			<span className={styles["cart__product-count"]}>{cartCount}</span>
 		</button>
 	)
 }

@@ -1,20 +1,21 @@
 import CartButton from "./CartButton/CartButton";
 import styles from "./Header.module.css";
 import meals from "../../assets/meals.jpg";
-const HeaderImage = (props) => {
+const HeaderImage = () => {
   return (
     <header className={styles.header_image}>
       <img src={meals} alt="meals" />
     </header>
   )
 }
-const Header = (props) => {
+const Header = () => {
   return (
     <>
       <header className={styles.header_header}>
         <h1>ReactMeals</h1>
-        <CartButton count={props.count} onCartBtnclick={props.onCartBtnclick} />
+        <CartButton />
       </header>
+
       <section>
         <HeaderImage />
       </section>
